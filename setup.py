@@ -14,7 +14,7 @@ setuptools.setup(
     description="A Notebook Extension for the Possible Worlds Explorer",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="", # TODO
+    url="https://github.com/idaks/PWE-NB-Extension",
     packages=setuptools.find_packages(),
     include_package_data=True,
     install_requires=requirements,
