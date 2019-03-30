@@ -15,6 +15,7 @@ PROLOG_CODEMIRROR_MODE_SOURCE_LOCATION = 'Prolog-Codemirror-Mode/prolog'
 class PWENBMagics(Magics):
 
     def load_lines(self, v):
+        v = PWENBMagics.clean_fname(v)
         lines = []
         if os.path.exists(v):
             with open(v, 'r') as f:
@@ -28,6 +29,8 @@ class PWENBMagics(Magics):
         return lines
 
     def save_lines(self, lines, loc):
+
+        loc = PWENBMagics.clean_fname(loc)
 
         def is_a_valid_textfile_name(loc: str):
             return loc.find('.') != -1
@@ -119,9 +122,6 @@ class PWENBMagics(Magics):
             return
         code_lines = []
         for fname in args.fnames:
-            fname = PWENBMagics.clean_fname(fname)
-            # with open(fname, 'r') as f:
-            #     code_lines.extend(f.read().splitlines())
             code_lines.extend(self.load_lines(fname))
         options = []
         options.append('--run')
