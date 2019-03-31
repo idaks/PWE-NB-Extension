@@ -1,4 +1,4 @@
-from PW_explorer.nb_helper import ASPRules
+from .helper import ASPRules
 from PW_explorer.run_clingo import run_clingo
 
 import notebook
