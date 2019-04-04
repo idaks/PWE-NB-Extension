@@ -8,7 +8,7 @@ with open('requirements.txt', 'r') as fh:
 
 setuptools.setup(
     name="PWE_NB_Extension",
-    version="0.0.2",
+    version="0.0.3",
     author="Sahil Gupta",
     author_email="",
     description="A Notebook Extension for the Possible Worlds Explorer",
