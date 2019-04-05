@@ -158,7 +158,8 @@ class PWENBMagics(Magics):
             display(ASPRules(asp_program))
 
         output['asp_rules'] = ASPRules(asp_program)
-        output['meta_data'] = parse_meta_data(asp_program)
+        if not args.run: # To avoid running it twice redundantly
+            output['meta_data'] = parse_meta_data(asp_program)
 
         if args.save_meta_data_to:
             self.__save_to_ipython_global_ns__(output['meta_data'], args.save_meta_data_to)
@@ -179,8 +180,6 @@ class PWENBMagics(Magics):
 
             if args.saveto:
                 self.save_lines(asp_soln, args.saveto)
-
-
 
             output['asp_soln'] = ASPRules(asp_soln)
             output['meta_data'] = md
