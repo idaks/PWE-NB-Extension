@@ -1,7 +1,7 @@
 from .helper import ASPRules
 from PW_explorer.run_clingo import run_clingo
 from PW_explorer.run_dlv import run_dlv
-from PW_explorer.meta_data_parser import parse_meta_data
+from PW_explorer.meta_data_parser import parse_pwe_meta_data
 
 import notebook
 import shutil
@@ -158,11 +158,8 @@ class PWENBMagics(Magics):
             display(ASPRules(asp_program))
 
         output['asp_rules'] = ASPRules(asp_program)
-        if not args.run: # To avoid running it twice redundantly
-            output['meta_data'] = parse_meta_data(asp_program)
-
-        if args.save_meta_data_to:
-            self.__save_to_ipython_global_ns__(output['meta_data'], args.save_meta_data_to)
+        if not args.run:  # To avoid running it twice redundantly
+            output['meta_data'] = parse_pwe_meta_data(asp_program)
 
         if args.run:
             if reasoner == 'dlv':
@@ -183,6 +180,9 @@ class PWENBMagics(Magics):
 
             output['asp_soln'] = ASPRules(asp_soln)
             output['meta_data'] = md
+
+        if args.save_meta_data_to:
+            self.__save_to_ipython_global_ns__(output['meta_data'], args.save_meta_data_to)
 
         if args.experiment_name:
             self.__save_to_ipython_global_ns__(output, args.experiment_name)
