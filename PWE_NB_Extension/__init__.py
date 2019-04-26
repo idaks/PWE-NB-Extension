@@ -210,9 +210,9 @@ class PWENBMagics(Magics):
                 options.append('--load_combined_input_to {}'.format(args.fnames[0]))
             else:
                 self.__display_usage_error__('Edit functionality only works when loading a single file or variable')
-        contents = '%%{} {}\n%asp_loadfiles {}\n\n{}'.format(
-            args.reasoner, " ".join(options), line, "\n".join(code_lines))
-        self.shell.set_next_input(contents, replace=True)
+        contents = '%%{} {}\n\n{}'.format(
+            args.reasoner, " ".join(options), "\n".join(code_lines))
+        self.shell.set_next_input(contents, replace=False)
 
 
 def load_prolog_js_files():
